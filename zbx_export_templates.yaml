@@ -1,0 +1,135 @@
+zabbix_export:
+  version: '5.2'
+  date: '2020-12-21T17:37:57Z'
+  groups:
+    -
+      name: Templates
+  templates:
+    -
+      template: Nextcloud
+      name: Nextcloud
+      description: 'Este template irá obter os dados de monitoramento da Nextcloud no formato JSON.'
+      groups:
+        -
+          name: Templates
+      applications:
+        -
+          name: Nextcloud
+      items:
+        -
+          name: 'Active Users'
+          key: 'nextcloud[.ocs.data.activeUsers.last5minutes,{$NCPW}]'
+          delay: 5m
+          applications:
+            -
+              name: Nextcloud
+        -
+          name: 'Number shares'
+          key: 'nextcloud[.ocs.data.nextcloud.shares.num_shares,{$NCPW}]'
+          delay: 5m
+          applications:
+            -
+              name: Nextcloud
+        -
+          name: 'Number of group shares'
+          key: 'nextcloud[.ocs.data.nextcloud.shares.num_shares_groups,{$NCPW}]'
+          delay: 5m
+          applications:
+            -
+              name: Nextcloud
+        -
+          name: 'Shares via link'
+          key: 'nextcloud[.ocs.data.nextcloud.shares.num_shares_link,{$NCPW}]'
+          delay: 5m
+          applications:
+            -
+              name: Nextcloud
+        -
+          name: 'Shares via link with out password'
+          key: 'nextcloud[.ocs.data.nextcloud.shares.num_shares_link_no_password,{$NCPW}]'
+          delay: 5m
+          applications:
+            -
+              name: Nextcloud
+        -
+          name: 'Number of sharred with users'
+          key: 'nextcloud[.ocs.data.nextcloud.shares.num_shares_user,{$NCPW}]'
+          delay: 5m
+          applications:
+            -
+              name: Nextcloud
+        -
+          name: 'Number files'
+          key: 'nextcloud[.ocs.data.nextcloud.storage.num_files,{$NCPW}]'
+          delay: 5m
+          applications:
+            -
+              name: Nextcloud
+        -
+          name: 'Nextcloud Version'
+          key: 'nextcloud[.ocs.data.nextcloud.system.version,{$NCPW}]'
+          delay: 1d
+          trends: '0'
+          value_type: TEXT
+          applications:
+            -
+              name: Nextcloud
+        -
+          name: 'Status Code'
+          key: 'nextcloud[.ocs.meta.statuscode,{$NCPW}]'
+          delay: 5m
+          applications:
+            -
+              name: Nextcloud
+  graphs:
+    -
+      name: 'Active Users'
+      graph_items:
+        -
+          sortorder: '1'
+          color: 1A7C11
+          item:
+            host: Nextcloud
+            key: 'nextcloud[.ocs.data.activeUsers.last5minutes,{$NCPW}]'
+    -
+      name: 'Number files'
+      graph_items:
+        -
+          sortorder: '1'
+          color: 1A7C11
+          item:
+            host: Nextcloud
+            key: 'nextcloud[.ocs.data.nextcloud.storage.num_files,{$NCPW}]'
+    -
+      name: 'Share statistics'
+      graph_items:
+        -
+          sortorder: '1'
+          color: 1A7C11
+          item:
+            host: Nextcloud
+            key: 'nextcloud[.ocs.data.nextcloud.shares.num_shares_groups,{$NCPW}]'
+        -
+          sortorder: '2'
+          color: F63100
+          item:
+            host: Nextcloud
+            key: 'nextcloud[.ocs.data.nextcloud.shares.num_shares_user,{$NCPW}]'
+        -
+          sortorder: '3'
+          color: 2774A4
+          item:
+            host: Nextcloud
+            key: 'nextcloud[.ocs.data.nextcloud.shares.num_shares,{$NCPW}]'
+        -
+          sortorder: '4'
+          color: A54F10
+          item:
+            host: Nextcloud
+            key: 'nextcloud[.ocs.data.nextcloud.shares.num_shares_link,{$NCPW}]'
+        -
+          sortorder: '5'
+          color: FC6EA3
+          item:
+            host: Nextcloud
+            key: 'nextcloud[.ocs.data.nextcloud.shares.num_shares_link_no_password,{$NCPW}]'
