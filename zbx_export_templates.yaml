@@ -1,6 +1,6 @@
 zabbix_export:
   version: '5.2'
-  date: '2020-12-21T17:37:57Z'
+  date: '2020-12-21T23:06:55Z'
   groups:
     -
       name: Templates
@@ -17,56 +17,133 @@ zabbix_export:
           name: Nextcloud
       items:
         -
-          name: 'Active Users'
+          name: 'Users am activity'
           key: 'nextcloud[.ocs.data.activeUsers.last5minutes,{$NCPW}]'
           delay: 5m
           applications:
             -
               name: Nextcloud
         -
-          name: 'Number shares'
+          name: 'Shares federated - Received'
+          key: 'nextcloud[.ocs.data.nextcloud.shares.num_fed_shares_received,{$NCPW}]'
+          delay: 5m
+          applications:
+            -
+              name: Nextcloud
+        -
+          name: 'Shares federated - Sent'
+          key: 'nextcloud[.ocs.data.nextcloud.shares.num_fed_shares_sent,{$NCPW}]'
+          delay: 5m
+          applications:
+            -
+              name: Nextcloud
+        -
+          name: 'Shares - Total'
           key: 'nextcloud[.ocs.data.nextcloud.shares.num_shares,{$NCPW}]'
           delay: 5m
           applications:
             -
               name: Nextcloud
         -
-          name: 'Number of group shares'
+          name: 'Shares - Groups'
           key: 'nextcloud[.ocs.data.nextcloud.shares.num_shares_groups,{$NCPW}]'
           delay: 5m
           applications:
             -
               name: Nextcloud
         -
-          name: 'Shares via link'
+          name: 'Shares - Links'
           key: 'nextcloud[.ocs.data.nextcloud.shares.num_shares_link,{$NCPW}]'
           delay: 5m
           applications:
             -
               name: Nextcloud
         -
-          name: 'Shares via link with out password'
+          name: 'Shares - Links with out password'
           key: 'nextcloud[.ocs.data.nextcloud.shares.num_shares_link_no_password,{$NCPW}]'
           delay: 5m
           applications:
             -
               name: Nextcloud
         -
-          name: 'Number of sharred with users'
+          name: 'Shares - Mail''s'
+          key: 'nextcloud[.ocs.data.nextcloud.shares.num_shares_mail,{$NCPW}]'
+          delay: 5m
+          applications:
+            -
+              name: Nextcloud
+        -
+          name: 'Shares - Chats'
+          key: 'nextcloud[.ocs.data.nextcloud.shares.num_shares_room,{$NCPW}]'
+          delay: 5m
+          applications:
+            -
+              name: Nextcloud
+        -
+          name: 'Shares - Users'
           key: 'nextcloud[.ocs.data.nextcloud.shares.num_shares_user,{$NCPW}]'
           delay: 5m
           applications:
             -
               name: Nextcloud
         -
-          name: 'Number files'
+          name: 'Storage files - Total'
           key: 'nextcloud[.ocs.data.nextcloud.storage.num_files,{$NCPW}]'
           delay: 5m
           applications:
             -
               name: Nextcloud
         -
-          name: 'Nextcloud Version'
+          name: 'Storage directories - Total'
+          key: 'nextcloud[.ocs.data.nextcloud.storage.num_storages,{$NCPW}]'
+          delay: 5m
+          applications:
+            -
+              name: Nextcloud
+        -
+          name: 'Storage directories - Home'
+          key: 'nextcloud[.ocs.data.nextcloud.storage.num_storages_home,{$NCPW}]'
+          delay: 5m
+          applications:
+            -
+              name: Nextcloud
+        -
+          name: 'Storage directories - Local'
+          key: 'nextcloud[.ocs.data.nextcloud.storage.num_storages_local,{$NCPW}]'
+          delay: 5m
+          applications:
+            -
+              name: Nextcloud
+        -
+          name: 'Storage directories - Other'
+          key: 'nextcloud[.ocs.data.nextcloud.storage.num_storages_other,{$NCPW}]'
+          delay: 5m
+          applications:
+            -
+              name: Nextcloud
+        -
+          name: 'Storage - Activated users'
+          key: 'nextcloud[.ocs.data.nextcloud.storage.num_users,{$NCPW}]'
+          delay: 5m
+          applications:
+            -
+              name: Nextcloud
+        -
+          name: 'Installed apps'
+          key: 'nextcloud[.ocs.data.nextcloud.system.apps.num_installed,{$NCPW}]'
+          delay: 5m
+          applications:
+            -
+              name: Nextcloud
+        -
+          name: 'Updates available'
+          key: 'nextcloud[.ocs.data.nextcloud.system.apps.num_updates_available,{$NCPW}]'
+          delay: 5m
+          applications:
+            -
+              name: Nextcloud
+        -
+          name: 'Nextcloud version'
           key: 'nextcloud[.ocs.data.nextcloud.system.version,{$NCPW}]'
           delay: 1d
           trends: '0'
@@ -75,22 +152,38 @@ zabbix_export:
             -
               name: Nextcloud
         -
-          name: 'Status Code'
+          name: 'Database size'
+          key: 'nextcloud[.ocs.data.server.database.size,{$NCPW}]'
+          delay: 5m
+          units: B
+          applications:
+            -
+              name: Nextcloud
+        -
+          name: 'Server PHP - Memory limit'
+          key: 'nextcloud[.ocs.data.server.php.memory_limit,{$NCPW}]'
+          delay: 5m
+          units: B
+          description: 'This sets the maximum amount of memory in bytes that a script is allowed to allocate. This helps prevent poorly written scripts for eating up all available memory on a server...'
+          applications:
+            -
+              name: Nextcloud
+        -
+          name: 'Server PHP - Upload max file size'
+          key: 'nextcloud[.ocs.data.server.php.upload_max_filesize,{$NCPW}]'
+          delay: 5m
+          units: B
+          applications:
+            -
+              name: Nextcloud
+        -
+          name: 'Status code'
           key: 'nextcloud[.ocs.meta.statuscode,{$NCPW}]'
           delay: 5m
           applications:
             -
               name: Nextcloud
   graphs:
-    -
-      name: 'Active Users'
-      graph_items:
-        -
-          sortorder: '1'
-          color: 1A7C11
-          item:
-            host: Nextcloud
-            key: 'nextcloud[.ocs.data.activeUsers.last5minutes,{$NCPW}]'
     -
       name: 'Number files'
       graph_items:
@@ -101,7 +194,7 @@ zabbix_export:
             host: Nextcloud
             key: 'nextcloud[.ocs.data.nextcloud.storage.num_files,{$NCPW}]'
     -
-      name: 'Share statistics'
+      name: 'Shares statistics'
       graph_items:
         -
           sortorder: '1'
@@ -133,3 +226,12 @@ zabbix_export:
           item:
             host: Nextcloud
             key: 'nextcloud[.ocs.data.nextcloud.shares.num_shares_link_no_password,{$NCPW}]'
+    -
+      name: 'Users am activity'
+      graph_items:
+        -
+          sortorder: '1'
+          color: 1A7C11
+          item:
+            host: Nextcloud
+            key: 'nextcloud[.ocs.data.activeUsers.last5minutes,{$NCPW}]'
