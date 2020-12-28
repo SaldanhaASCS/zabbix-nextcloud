@@ -5,7 +5,7 @@
 
 2. Install the `curl` and `jq` package on the host that has the zabbix-agent installed.
 
-3. Insert the `nextcloud.conf` file on the host that has zabbix-agent installed in the `/etc/zabbix/zabbix_agentd.d/` directory and `restart` the service.
+3. Insert the `nextcloud.conf` file on the host that has zabbix-agent installed in the `/etc/zabbix/zabbix_agentd.conf.d/` directory and `restart` the service.
 
 4. Import the `zbx_export_templates.yaml` template into the zabbix server.
 
